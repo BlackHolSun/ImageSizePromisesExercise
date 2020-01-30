@@ -1,45 +1,30 @@
+// Second exercise: use async await 
 
 document.getElementById("button").addEventListener("click", testPromise);
 
 let log = document.getElementById('log');
 
 
-function testPromise() {
+async function testPromise() {
 
-  imageOneDimensions().then((val) => {
+  try {
+    let first = await imageOneDimensions();
+    console.log('Promise 1 ' + new Date());
 
-    console.log('Promise 1' + val);
-  })
-    .catch(
-      (reason) => {
-        console.log('Handle rejected promise (' + reason + ') here.');
-      });
+    let second = await imageTwoDimensions();
+    console.log('Promise 2 ' + new Date());
 
+    let third = await imageThreeDimensions();
+    console.log('Promise 3 ' + new Date());
+  } catch (e) {
 
-  imageTwoDimensions().then((val) => {
-
-    console.log('Promise 2' + val);
-  })
-
-    .catch(
-      (reason) => {
-        console.log('Handle rejected promise 2(' + reason + ') here.');
-      }
-    )
-
-  imageThreeDimensions().then((val) => {
-
-
-    console.log('Promise 3' + val);
-  }).catch(
-    (reason) => {
-      console.log('Handle rejected promise 3(' + reason + ') here.');
-    }
-  )
+    console.log(e);
+  }
 
 }
 
 
+/* Promises */
 const imageOneDimensions = () =>
 
   new Promise(resolve => {
@@ -97,6 +82,8 @@ const imageThreeDimensions = () =>
 
 
   })
+
+
 
 
 
